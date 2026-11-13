@@ -1,0 +1,183 @@
+# =====================================================================
+# スライド作成チーム - 設定ファイル
+# =====================================================================
+
+version: 1
+
+user_type: minimal  # trial / minimal / full
+
+# =====================================================================
+# チーム構成
+# =====================================================================
+team:
+  name: "slide-maker"
+  prefix: "slide-"
+
+  director: "slide-director"
+  specialists:
+    - "slide-composer"
+    - "slide-designer"
+    - "slide-builder"
+  advocate: "slide-advocate"
+
+  active_phases:
+    composer: true
+    designer: true
+    builder: true
+    advocate: true
+
+  # 中間承認ポイント
+  approval_after: ["composer", "designer"]
+
+  advocate_strictness: standard
+
+# =====================================================================
+# 出力形式
+# =====================================================================
+output_formats:
+  # 使用する形式（複数選択可）
+  enabled:
+    - manual  # 手動モード（デフォルト・最も安心）
+
+  # デフォルト形式
+  default: manual
+
+# =====================================================================
+# Google Slides 設定（使う場合）
+# =====================================================================
+google_slides:
+  # GAS Web App の URL（スクリプトをデプロイ後、ここに貼る）
+  # 認証トークンは別途 環境変数 or OSキーチェーン管理
+  web_app_url: ""
+
+  # 環境変数名（ACCESS_TOKEN を保持）
+  token_env_var: "SLIDE_MAKER_GAS_TOKEN"
+
+# =====================================================================
+# Marp 設定（使う場合）
+# =====================================================================
+marp:
+  # カスタムテーマCSSのパス
+  theme_css_path: ""
+
+  # デフォルト出力形式
+  default_output: html  # html / pdf / pptx
+
+# =====================================================================
+# PowerPoint 設定（使う場合）
+# =====================================================================
+pptx:
+  # 流用テンプレート (.pptx)
+  template_path: ""
+
+  # Python コマンド
+  python_cmd: "python3"
+
+# =====================================================================
+# reveal.js 設定（使う場合）
+# =====================================================================
+reveal_js:
+  # reveal.js テンプレートディレクトリ
+  template_dir: ""
+
+# =====================================================================
+# デザインテーマのプリセット
+# =====================================================================
+design:
+  # simple_clean / corporate / creative / academic / product
+  default_tendency: simple_clean
+
+  # ブランドガイドライン
+  brand:
+    primary_color: ""
+    secondary_color: ""
+    accent_color: ""
+    heading_font: ""
+    body_font: ""
+    logo_path: ""
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  secretary:
+    enabled: false
+    config_path: "./.secretary"
+
+  meeting_supporter:
+    enabled: false
+    config_path: "./.meeting-supporter"
+
+  spreadsheet_operator:
+    enabled: false
+    config_path: "./.spreadsheet-operator"
+
+  report_writer:
+    enabled: false
+    config_path: "./.report-writer"
+
+  text_quality_checker:
+    enabled: false
+    config_path: "./.text-quality-checker"
+    # ビルド後に走らせる
+    trigger: after_builder  # after_builder / after_advocate / never
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  google_slides:
+    date: ""
+    summary: ""
+  marp:
+    date: ""
+    summary: ""
+  pptx:
+    date: ""
+    summary: ""
+  reveal_js:
+    date: ""
+    summary: ""
+
+# =====================================================================
+# 作業フォルダ
+# =====================================================================
+workspace:
+  base_path: "./work/slide-maker"
+  per_case_subdir: true
+
+# =====================================================================
+# 並列実行
+# =====================================================================
+parallelism:
+  enabled: false
+  max_concurrent: 3
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  # 外部送信禁止
+  never_external_send: true
+
+  # 他エージェント連携は毎回承認
+  require_peer_consent: true
+
+  # 機密情報マスキング
+  mask_sensitive: false
+
+  # 著作権チェック
+  check_image_copyright: true
+
+  # 配布前の内部コードネーム混入チェック
+  check_internal_names: true
+
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false

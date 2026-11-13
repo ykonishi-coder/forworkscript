@@ -1,0 +1,174 @@
+# =====================================================================
+# 経理支援エージェント - 設定ファイル
+# =====================================================================
+# ⚠️ 経理データは機密情報です。.gitignore 必須
+# =====================================================================
+
+version: 1
+
+user_type: minimal  # trial / minimal / full
+
+# 免責事項の同意
+disclaimer:
+  acknowledged: false
+  acknowledged_date: ""
+
+# =====================================================================
+# 事業情報
+# =====================================================================
+business:
+  # 事業形態
+  # individual / corporation / llc / npo / other
+  entity_type: ""
+
+  # 業種
+  industry: ""
+
+  # 決算月
+  fiscal_year_end_month: 3  # 3 = 3月決算（最も一般的）
+
+  # インボイス対応
+  invoice_registered: false
+  invoice_number: ""  # T + 13桁
+
+  # 消費税課税方式
+  # standard / simple / two_percent_special / exempt
+  consumption_tax_method: ""
+
+# =====================================================================
+# 会計ソフト
+# =====================================================================
+accounting_software:
+  # freee / moneyforward / yayoi_desktop / yayoi_cloud / kanjou_bugyou /
+  # pca / other / excel / none
+  primary: ""
+
+  primary_custom: ""
+
+  # 連携方式（サポートレベル）
+  # level1: 相談のみ
+  # level2: CSV連携
+  # level3: API/MCP連携
+  support_level: level1
+
+  # API/MCP 設定（level3 の場合）
+  api_config:
+    endpoint: ""
+    # 認証情報は絶対に保存しない
+    # 環境変数 or OSキーチェーン管理
+
+# =====================================================================
+# 税理士情報
+# =====================================================================
+tax_accountant:
+  exists: false  # 顧問税理士の有無
+  # 名前・連絡先は保存しない（ユーザーのプライバシー）
+
+# =====================================================================
+# 経理方針
+# =====================================================================
+accounting:
+  # 税抜/税込
+  tax_method: tax_exclusive  # tax_exclusive / tax_inclusive
+
+  # 減価償却方式
+  depreciation_method: declining_balance  # declining_balance / straight_line
+
+  # 勘定科目のカスタマイズ（社内独自科目があれば）
+  custom_accounts: []
+
+# =====================================================================
+# プライバシー
+# =====================================================================
+privacy:
+  # maximum / strict / standard
+  masking_level: maximum
+
+  mask_fields:
+    - counterparty_name  # 取引先名
+    - amount            # 金額
+    - personal_info     # 個人情報
+    - bank_account      # 銀行口座
+
+  keep_original_documents: false  # サマリのみ保存
+
+  cleanup:
+    enabled: true
+    delete_after_days: 365
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  freee:
+    date: ""
+    summary: ""
+  moneyforward:
+    date: ""
+    summary: ""
+  yayoi:
+    date: ""
+    summary: ""
+  kanjou_bugyou:
+    date: ""
+    summary: ""
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  secretary:
+    enabled: false
+  spreadsheet_operator:
+    enabled: false
+  report_writer:
+    enabled: false
+
+# =====================================================================
+# アラート
+# =====================================================================
+alerts:
+  enabled: true
+  payment_due_warning_days:
+    - 30
+    - 7
+  expiration_warning_days:
+    - 90
+    - 30
+
+# =====================================================================
+# 保存先
+# =====================================================================
+workspace:
+  base_path: "./.accounting-helper"
+
+  folders:
+    journal_drafts: "journal-drafts"
+    monthly_analyses: "monthly-analyses"
+    receipts: "receipts"
+    invoices: "invoices"
+    expenses: "expenses"
+    research: "research"
+    alerts: "alerts"
+    payments: "payments"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  never_external_send: true
+  require_write_consent: true
+  require_peer_consent: true
+  never_store_credentials: true
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false
+  audit_log:
+    enabled: true
+    path: "./audit.log"

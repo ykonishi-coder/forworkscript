@@ -1,0 +1,151 @@
+# =====================================================================
+# レポート作成チーム - 設定ファイル
+# =====================================================================
+
+version: 1
+
+user_type: minimal  # trial / minimal / full
+
+# =====================================================================
+# チーム構成
+# =====================================================================
+team:
+  name: "report-writer"
+  prefix: "report-"
+
+  director: "report-director"
+  specialists:
+    - "report-researcher"
+    - "report-composer"
+    - "report-writer"
+  advocate: "report-advocate"
+
+  # 使う工程（抜きたいものは false に）
+  active_phases:
+    researcher: true
+    composer: true
+    writer: true
+    advocate: true
+
+  # 中間承認ポイント
+  # 指定した工程の後にユーザー承認を挟む
+  approval_after: ["researcher", "writer"]  # 素材収集後、執筆後
+
+  # DA厳しさ: lenient / standard / strict
+  advocate_strictness: standard
+
+# =====================================================================
+# レポートタイプ
+# =====================================================================
+report_types:
+  # 使用するタイプ（雛形のコピーが作られる）
+  enabled:
+    - weekly_report
+    - proposal
+    - research_report
+    - kpi_report
+    - incident_report
+    - project_status
+    - executive_summary
+
+  # デフォルトのタイプ（省略時）
+  default: weekly_report
+
+# =====================================================================
+# 作業フォルダ
+# =====================================================================
+workspace:
+  base_path: "./work/report-writer"
+  per_case_subdir: true
+
+# =====================================================================
+# 他エージェントとの連携
+# =====================================================================
+peer_agents:
+  secretary:
+    enabled: false
+    config_path: "./.secretary"
+    # 取り込むデータ種別
+    fetch:
+      emails: true
+      contacts: false
+
+  meeting_supporter:
+    enabled: false
+    config_path: "./.meeting-supporter"
+    fetch:
+      meetings: true
+      todos: true
+
+  spreadsheet_operator:
+    enabled: false
+    config_path: "./.spreadsheet-operator"
+    fetch:
+      data: true
+
+  text_quality_checker:
+    enabled: false
+    config_path: "./.text-quality-checker"
+    # 呼び出しタイミング
+    trigger: after_writer  # after_writer / after_advocate / never
+
+# =====================================================================
+# Web調査
+# =====================================================================
+web_research:
+  enabled: true
+
+  # 信頼できるソース（ホワイトリスト優先）
+  trusted_sources:
+    - "*.go.jp"
+    - "*.ac.jp"
+
+  blocked_sources: []
+
+  # 裏取りの必要数
+  min_sources_for_fact: 2
+
+# =====================================================================
+# 並列実行
+# =====================================================================
+parallelism:
+  enabled: false  # デフォルト無効。素材収集の並列化は必要に応じて有効化
+  max_concurrent: 3
+
+# =====================================================================
+# 納品物フォーマット
+# =====================================================================
+output:
+  # Markdown / docx / pdf / google_docs
+  # docx/pdf/google_docs は将来対応予定
+  format: markdown
+
+  # 納品物のファイル名形式
+  # {case_name} は案件名、{date} は YYYY-MM-DD
+  filename_template: "{case_name}_{date}.md"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  # 外部送信禁止
+  never_external_send: true
+
+  # 連携先ファイルの自動読み取り禁止（毎回承認）
+  require_peer_consent: true
+
+  # 機密情報のマスキング（固有名詞を {相手名} 等に）
+  mask_sensitive: false
+
+  # 配布時の追加チェック（内部コードネーム混入）
+  check_internal_names: true
+
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false

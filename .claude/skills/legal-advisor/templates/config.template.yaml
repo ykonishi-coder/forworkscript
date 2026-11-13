@@ -1,0 +1,167 @@
+# =====================================================================
+# 法務支援エージェント - 設定ファイル
+# =====================================================================
+# ⚠️ 契約書は機密情報です。必ず .gitignore に追加してください
+# =====================================================================
+
+version: 1
+
+user_type: minimal  # trial / minimal / full
+
+# =====================================================================
+# 免責事項の確認
+# =====================================================================
+disclaimer:
+  acknowledged: false  # セットアップ時に true にする
+  acknowledged_date: ""
+
+# =====================================================================
+# プライバシー設定
+# =====================================================================
+privacy:
+  # マスキングレベル
+  # maximum / strict / standard
+  masking_level: maximum
+
+  mask_fields:
+    - counterparty_name    # 相手方企業名
+    - counterparty_rep     # 相手方代表者
+    - amount              # 金額
+    - dates               # 具体的日付
+    - contact             # 連絡先
+
+  # 契約書原文の保存
+  keep_original: false  # サマリのみ保存
+
+  # 自動削除
+  cleanup:
+    enabled: true
+    delete_after_days: 365  # 契約終了後1年で削除（要件に応じて調整）
+
+# =====================================================================
+# ユーザー環境
+# =====================================================================
+user_profile:
+  # 業種
+  # it / manufacturing / service / finance / healthcare / real_estate / education / other
+  industry: ""
+
+  # 組織規模
+  # individual / small (<50) / medium (50-500) / large (500+)
+  org_size: ""
+
+  # 主な立場
+  # buyer / seller / both
+  typical_position: both
+
+# =====================================================================
+# 関連法令（業種から自動推定 + カスタム）
+# =====================================================================
+applicable_laws:
+  common:
+    - civil_code          # 民法
+    - commercial_code     # 商法
+    - company_law         # 会社法
+    - personal_info       # 個人情報保護法
+    - antitrust           # 独占禁止法
+
+  # 業種別（必要なものを有効化）
+  optional:
+    subcontracting_law: false      # 下請法
+    consumer_contract: false        # 消費者契約法
+    specified_commerce: false       # 特定商取引法
+    labor_standards: false          # 労働基準法
+    copyright: false               # 著作権法
+    # 他、必要に応じて追加
+
+# =====================================================================
+# アラート設定
+# =====================================================================
+alerts:
+  enabled: true
+
+  # 更新期限の通知タイミング
+  expiration_warnings:
+    - 90  # 90日前
+    - 30  # 30日前
+    - 7   # 7日前
+
+  # 法改正情報の定期取得
+  law_change_updates:
+    enabled: false
+    frequency: monthly  # monthly / quarterly / never
+
+# =====================================================================
+# 契約書管理
+# =====================================================================
+contract_management:
+  enabled: true
+  index_path: "./index.md"
+  contracts_dir: "./contracts"
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  secretary:
+    enabled: false
+    # 契約交渉のメールやり取り参照
+
+  report_writer:
+    enabled: false
+    # 法務レポート作成
+
+  text_quality_checker:
+    enabled: false
+    # 契約書文面の校正
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  e_gov:
+    date: ""
+    summary: ""
+
+# =====================================================================
+# 保存先
+# =====================================================================
+workspace:
+  base_path: "./.legal-advisor"
+
+  folders:
+    contracts: "contracts"
+    reviews: "reviews"
+    research: "research"
+    alerts: "alerts"
+    drafts: "drafts"
+    compliance: "compliance"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  never_external_send: true
+  require_peer_consent: true
+  require_write_consent: true
+  never_store_credentials: true
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# スケジュール
+# =====================================================================
+schedule:
+  mode: manual_only  # manual_only / monthly_alert / weekly_alert
+  cron_expression: ""
+  timezone: "Asia/Tokyo"
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false
+  audit_log:
+    enabled: true
+    path: "./audit.log"

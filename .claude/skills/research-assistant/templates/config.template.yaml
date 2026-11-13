@@ -1,0 +1,141 @@
+# =====================================================================
+# Research Assistant - 設定ファイル
+# =====================================================================
+
+version: 1
+
+user_type: minimal
+
+# =====================================================================
+# 主なリサーチ領域
+# =====================================================================
+research_domains:
+  - market_industry
+  - competitive
+  - technology
+  - legal
+  - customer
+  - academic
+  - person_company
+  - news
+
+# =====================================================================
+# 調査深度デフォルト
+# =====================================================================
+research_depth:
+  default: standard  # light / standard / deep
+
+# =====================================================================
+# 通知機能
+# =====================================================================
+notifications:
+  enabled: false
+
+  # draft_only / draft_approve / auto_self_only
+  send_mode: draft_approve
+
+  # 通知先設定
+  channels:
+    email:
+      enabled: false
+      provider: ""  # gmail / outlook
+      token_env_var: ""  # 認証トークンの環境変数名
+
+    slack:
+      enabled: false
+      method: ""  # webhook / api / mcp
+      webhook_env_var: "SLACK_WEBHOOK_URL"
+
+    teams:
+      enabled: false
+      method: webhook
+      webhook_env_var: "TEAMS_WEBHOOK_URL"
+
+    discord:
+      enabled: false
+      webhook_env_var: "DISCORD_WEBHOOK_URL"
+
+    chatwork:
+      enabled: false
+      token_env_var: "CHATWORK_TOKEN"
+
+    line:
+      enabled: false
+      method: messaging_api  # LINE Notify は廃止済み
+      token_env_var: "LINE_TOKEN"
+
+# =====================================================================
+# 情報源
+# =====================================================================
+sources:
+  preferred:
+    - government_stats
+    - research_firms
+    - major_media
+    - industry_journals
+
+  custom: []
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  slack:
+    date: ""
+    summary: ""
+  teams:
+    date: ""
+    summary: ""
+  line:
+    date: ""
+    summary: ""
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  secretary:
+    enabled: false
+  report_writer:
+    enabled: false
+  bizdev_strategist:
+    enabled: false
+  marketing_strategist:
+    enabled: false
+  text_quality_checker:
+    enabled: false
+
+# =====================================================================
+# スケジュール
+# =====================================================================
+schedule:
+  mode: manual_only
+  cron_expression: ""
+  timezone: "Asia/Tokyo"
+
+# =====================================================================
+# 保存先
+# =====================================================================
+workspace:
+  base_path: "./.research-assistant"
+  folders:
+    research: "research"
+    reports: "reports"
+    notifications: "notifications"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  never_store_credentials: true
+  require_notification_approval: true
+  never_auto_send_to_others: true
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false

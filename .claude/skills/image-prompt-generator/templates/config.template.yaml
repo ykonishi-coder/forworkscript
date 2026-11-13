@@ -1,0 +1,106 @@
+# =====================================================================
+# 画像生成プロンプトサポーター - 設定ファイル
+# ---------------------------------------------------------------------
+# このファイルはあなたのPC内にのみ保存されます。
+# =====================================================================
+
+version: 1
+
+user_type: minimal  # trial / minimal / full
+
+# =====================================================================
+# よく使う画像生成AI
+# =====================================================================
+preferred_ai:
+  - nano_banana
+  # 選択肢:
+  # nano_banana / nano_banana_pro (Google Gemini 系)
+  # gpt_image (OpenAI)
+  # midjourney (V7 / V6.1 / Niji)
+  # flux (1 pro / 1.1 pro / dev)
+  # stable_diffusion (3.5 / SDXL)
+  # adobe_firefly
+  # ideogram
+  # imagen (Google Cloud)
+  # recraft / leonardo / krea
+  # dalle (ChatGPT / Bing)
+  # custom
+
+# =====================================================================
+# 主な用途
+# =====================================================================
+usage:
+  - sns_post  # sns_post / business_doc / personal_art / marketing / character_design / other
+
+# =====================================================================
+# テイストの好み
+# =====================================================================
+style:
+  preferred_tastes:
+    - illustration  # realistic / illustration / flat / watercolor / cg_3d / none
+
+  # デフォルトのアスペクト比
+  default_aspect_ratio: "1:1"  # 1:1 / 16:9 / 9:16 / 3:4 / 4:3
+
+  # 既定のネガティブ要素
+  default_negative:
+    - "blurry"
+    - "low quality"
+    - "distorted"
+    - "watermark"
+
+  # カラーパレット傾向
+  color_tendency: "neutral"  # warm / cool / pastel / vibrant / monochrome / neutral
+
+# =====================================================================
+# 制限事項
+# =====================================================================
+restrictions:
+  # 実在人物を含めない
+  no_real_person: true
+
+  # 特定ブランド・キャラクター名を避ける
+  avoid_copyrighted_names: true
+
+  # 避けたいテーマ（自由記述）
+  avoid_themes: []
+
+# =====================================================================
+# プロンプト生成の既定
+# =====================================================================
+generation:
+  # デフォルトで3案提示
+  default_variants: 3
+
+  # 各AI用に並列で出すか、選択したAIのみか
+  parallel_translate: false
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  midjourney:
+    date: ""
+    summary: ""
+  stable_diffusion:
+    date: ""
+    summary: ""
+  dalle:
+    date: ""
+    summary: ""
+  nano_banana:
+    date: ""
+    summary: ""
+  flux:
+    date: ""
+    summary: ""
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  # 生成プロンプトの履歴を残すか（次回の学習用）
+  save_prompt_history: true
+  prompt_history_path: "./prompts.log"

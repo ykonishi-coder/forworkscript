@@ -1,0 +1,143 @@
+# =====================================================================
+# セキュリティ担当 - 設定ファイル
+# ---------------------------------------------------------------------
+# このファイルはあなたのPC内にのみ保存されます。
+# 認証情報（APIキー・パスワード・カード番号）は絶対にここに書かないでください。
+# =====================================================================
+
+version: 1
+
+user_type: minimal  # trial / minimal / full
+
+# =====================================================================
+# 巡回（patrol）設定
+# =====================================================================
+patrol:
+  # スキャン対象ディレクトリ（絶対パス）
+  target_dirs:
+    - "~/projects"
+    # - "/path/to/your/repos"
+
+  # Git履歴もスキャンするか
+  scan_git_history: false
+
+  # ログファイルのスキャン
+  log_files: []
+    # - "~/Library/Logs/app.log"
+
+  # 除外パス
+  exclude_patterns:
+    - "node_modules"
+    - ".next"
+    - "dist"
+    - "build"
+    - ".venv"
+    - "vendor"
+
+  # 巡回頻度
+  schedule: weekly  # daily / weekly / monthly / manual_only
+
+  # レポート保存先
+  report_dir: "./.security-guard/patrol-reports"
+
+  # 検知対象サービス（主に使っているもの）
+  detect_services:
+    - anthropic
+    - openai
+    - github
+    # - aws
+    # - gcp
+    # - stripe
+    # - slack
+    # - notion
+    # - supabase
+
+# =====================================================================
+# 監査（audit）設定
+# =====================================================================
+audit:
+  # 監査対象ファイル
+  targets:
+    claude_md:
+      - "~/.claude/CLAUDE.md"
+      - "./CLAUDE.md"
+    agents_md:
+      - "./AGENTS.md"
+    hooks:
+      - "~/.claude/settings.json"
+    mcp_config:
+      - "~/.claude/.mcp.json"
+      - "./.claude/.mcp.json"
+    ignore_files:
+      - ".gitignore"
+      - ".claudeignore"
+      - ".cursorignore"
+
+  # 監査頻度
+  schedule: monthly
+
+  # レポート保存先
+  report_dir: "./.security-guard/audit-reports"
+
+# =====================================================================
+# 導入ゲート（intake-gate）設定
+# =====================================================================
+intake_gate:
+  # 入口整備の完了状況（入口設計モードで更新される）
+  intake_ready:
+    dedicated_card: false       # AI専用カード用意済み？
+    dedicated_bank: false       # AI専用口座用意済み？
+    password_manager: false     # パスワードマネージャー使用中？
+    mfa_coverage: partial       # none / partial / full
+    api_key_separation: false   # APIキー用途別分割済み？
+    sandbox_available: none     # none / docker / vm / cloud
+    patrol_scheduled: false     # 定期巡回設定済み？
+    audit_scheduled: false      # 定期監査設定済み？
+
+  # 判定結果の保存先
+  decision_log_dir: "./.security-guard/intake-gate-decisions"
+
+# =====================================================================
+# インシデント対応設定
+# =====================================================================
+incident_response:
+  # 記録先（時系列タイムライン等）
+  log_dir: "./.security-guard/incidents"
+
+  # 連絡先メモ（電話番号・URLは書いてOK、アカウントIDや認証情報は書かない）
+  contacts:
+    organization_security: ""    # 組織内セキュリティ担当
+    jpcert: "https://www.jpcert.or.jp/form/"
+    police_cyber: ""             # 都道府県警サイバー犯罪対策課
+    cyber_insurance: ""          # 契約保険会社のインシデント連絡先
+    lawyer: ""                   # 顧問弁護士
+    privacy_committee: "https://www.ppc.go.jp/"  # 個人情報保護委員会
+
+# =====================================================================
+# ローテーション管理
+# =====================================================================
+rotation:
+  # 次回ローテーション予定
+  next_key_rotation: ""       # YYYY-MM-DD
+  next_password_review: ""    # YYYY-MM-DD
+  # 四半期単位を推奨
+
+# =====================================================================
+# プライバシー設定
+# =====================================================================
+privacy:
+  # レポート内のマスキング強度
+  masking_level: strong  # strong / medium / off
+
+  # レポートを Claude との会話に残すか
+  report_in_chat: summary_only  # full / summary_only / never
+
+  # 古いレポート自動削除（日数）
+  auto_delete_reports_days: 180
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./.security-guard/logs.txt"
+  level: info

@@ -1,0 +1,145 @@
+/* =========================================================================
+   HTML Deck — Color + Type Tokens (grayscale base)
+   汎用グレースケール デザイントークン。特定ブランド色を含まない。
+   ========================================================================= */
+
+/* Noto Sans JP via Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+:root {
+  /* ---------- Base ---------- */
+  --base:            #FFFFFF;
+
+  /* ---------- Primary (charcoal ramp) — 0 = darkest, 9 = lightest ---------- */
+  --primary-0:  #1F1F1F;
+  --primary-1:  #2E2E2E;
+  --primary-2:  #3D3D3D;
+  --primary-3:  #4F4F4F;
+  --primary-4:  #616161;
+  --primary-5:  #7A7A7A;
+  --primary-6:  #969696;
+  --primary-7:  #B5B5B5;
+  --primary-8:  #D4D4D4;
+  --primary-9:  #ECECEC;
+
+  /* ---------- Secondary (cool gray ramp) ---------- */
+  --secondary-0: #4A5560;
+  --secondary-1: #5C6772;
+  --secondary-2: #6E7984;
+  --secondary-3: #818B95;
+  --secondary-4: #939DA6;
+  --secondary-5: #A6AFB7;
+  --secondary-6: #B8C0C7;
+  --secondary-7: #CBD2D8;
+  --secondary-8: #DEE3E8;
+  --secondary-9: #F1F4F6;
+
+  /* ---------- Neutral (black ramp) — body text & dividers ---------- */
+  --neutral-0:  #333333;
+  --neutral-1:  #474747;
+  --neutral-2:  #5C5C5C;
+  --neutral-3:  #707070;
+  --neutral-4:  #858585;
+  --neutral-5:  #999999;
+  --neutral-6:  #ADADAD;
+  --neutral-7:  #C2C2C2;
+  --neutral-8:  #D6D6D6;
+  --neutral-9:  #EBEBEB;
+
+  /* ---------- Accent gradient (grayscale) ---------- */
+  /* このテンプレを別ブランドに転用する場合は、以下2つを書き換えるだけで
+     ヘッダー帯・グラデーションテキスト・各種強調色が一括で切り替わる。 */
+  --accent-start: #1F1F1F;
+  --accent-end:   #888888;
+  --accent-gradient: linear-gradient(90deg, var(--accent-start) 0%, var(--accent-end) 100%);
+  --accent-gradient-diagonal: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%);
+
+  /* ---------- Semantic: foreground ---------- */
+  --fg-strong:  var(--neutral-0);
+  --fg-default: var(--neutral-1);
+  --fg-muted:   var(--neutral-3);
+  --fg-faint:   var(--neutral-5);
+  --fg-on-dark: var(--base);
+  --fg-brand:   var(--primary-0);
+
+  /* ---------- Semantic: background ---------- */
+  --bg-canvas:  var(--base);
+  --bg-subtle:  var(--primary-9);
+  --bg-muted:   var(--neutral-9);
+  --bg-dark:    var(--neutral-0);
+  --bg-brand:   var(--primary-0);
+  --bg-brand-soft: var(--primary-9);
+
+  /* ---------- Semantic: border ---------- */
+  --border-faint:  var(--neutral-9);
+  --border-default: var(--neutral-8);
+  --border-strong: var(--neutral-6);
+  --border-brand:  var(--primary-0);
+
+  /* ---------- Typography ---------- */
+  --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans',
+               'Yu Gothic UI', 'Meiryo', sans-serif;
+
+  /* size scale (px) */
+  --fs-24:  24px;
+  --fs-32:  32px;
+  --fs-40:  40px;
+  --fs-56:  56px;
+  --fs-64:  64px;
+  --fs-72:  72px;
+  --fs-80:  80px;
+  --fs-96:  96px;
+
+  /* weights */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-bold:    700;
+  --fw-black:   900;
+
+  /* line-height */
+  --lh-display: 1.1;
+  --lh-title:   1.25;
+  --lh-body:    1.5;
+
+  /* letter-spacing */
+  --ls-tight:   -0.01em;
+  --ls-normal:  0;
+  --ls-loose:   0.02em;
+
+  /* ---------- Spacing (multiples of 4) ---------- */
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-30: 120px;
+
+  /* ---------- Radii ---------- */
+  --radius-sm:    8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-card:  0 4px 24px rgba(31, 31, 31, 0.08);
+  --shadow-lift:  0 12px 40px rgba(31, 31, 31, 0.12);
+
+  /* ---------- Layout ---------- */
+  --slide-w: 1920px;
+  --slide-h: 1080px;
+  --slide-pad: 80px;
+  --header-h:  120px;
+}
+
+.ds-gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+}

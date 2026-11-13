@@ -1,0 +1,156 @@
+# =====================================================================
+# 秘書 - 設定ファイル
+# ---------------------------------------------------------------------
+# このファイルはあなたのPC内にのみ保存されます。
+# 外部サーバーに送られることも、Claudeの学習に使われることもありません。
+# git リポジトリに置く場合は、.gitignore への追加を推奨します。
+# =====================================================================
+
+version: 1
+
+# ユーザータイプ（ウィザード Q0 の回答）
+# trial / minimal / full
+user_type: minimal
+
+# =====================================================================
+# 有効にする機能
+# =====================================================================
+functions:
+  email_reply:
+    enabled: true
+  schedule_check:
+    enabled: true
+
+# =====================================================================
+# メールツール
+# =====================================================================
+mail:
+  # gmail / outlook / apple_mail / thunderbird / other
+  tool: gmail
+  tool_custom: ""
+
+  # 連携方式
+  # mcp / graph_api / applescript / gas / local_file / manual
+  # manual = 手動コピペ（最も安心）
+  integration: manual
+
+  # 返信ドラフトを作る対象
+  target:
+    labels_include: []
+    labels_exclude:
+      - promotions
+      - social
+      - spam
+      - updates
+    senders_include: []
+    senders_exclude:
+      - "noreply@"
+      - "no-reply@"
+      - "donotreply@"
+    since_hours: 24
+    max_per_run: 20
+
+  # ドラフトの作り方
+  draft:
+    variants: 3  # 短め・標準・丁寧の3案
+    add_ai_marker: true
+    ai_marker_text: "[下書き：送信前にご確認ください]"
+    language: original  # original / ja / en
+    unknown_fields: placeholder  # placeholder / guess
+
+# =====================================================================
+# カレンダーツール
+# =====================================================================
+calendar:
+  # google / outlook / apple / other
+  tool: google
+  tool_custom: ""
+
+  # 連携方式
+  # mcp / api / ical_url / applescript / manual
+  integration: manual
+
+  # サマリの詳細度
+  summary:
+    include_time: true
+    include_attendees: true
+    include_location: true
+    include_notes: false  # 機密保護のためデフォルト false
+    include_preparation: true
+
+  # 空き時間の定義
+  free_slot:
+    min_minutes: 30  # 30分以上を「空き」と見なす
+    lunch_start: "12:00"
+    lunch_end: "13:00"
+    business_hours_start: "09:00"
+    business_hours_end: "18:00"
+
+  # 移動時間の想定
+  travel:
+    external_meeting_one_way_minutes: 30  # 社外訪問の片道目安
+    buffer_minutes: 10  # 予備時間
+
+  # プライベート予定
+  private:
+    show_title: false  # false の場合「プライベート」と匿名化
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  email:
+    date: ""
+    summary: ""
+  calendar:
+    date: ""
+    summary: ""
+
+# =====================================================================
+# スケジュール（定期実行）
+# =====================================================================
+schedule:
+  # daily_once / daily_twice / every_few_hours / hourly / manual_only
+  mode: manual_only
+  cron_expression: ""
+  timezone: "Asia/Tokyo"
+
+  # 定期実行で走らせる機能
+  functions:
+    - email_reply
+    - schedule_check
+
+  # 朝のサマリ出力先
+  morning_summary:
+    # log / file / notification
+    output: log
+    time: "08:30"
+
+# =====================================================================
+# セキュリティ設定
+# =====================================================================
+security:
+  # 実送信・予定変更を絶対に行わない（変更不可扱い）
+  never_send_email: true
+  never_modify_calendar: true
+
+  # 怪しいメール/予定を検出したら処理せず警告
+  detect_suspicious: true
+
+  # 大量処理の停止
+  abort_on_bulk: true
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# 文体・好みプロファイル
+# =====================================================================
+style_profile_path: "./style-profile.md"
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info  # error / info / debug
+  # 個人情報保護: デフォルトでメール本文・予定詳細はログに残さない
+  include_sensitive_content: false

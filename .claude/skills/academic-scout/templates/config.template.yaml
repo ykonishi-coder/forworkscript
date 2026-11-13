@@ -1,0 +1,114 @@
+# =====================================================================
+# Academic Scout - 設定ファイル
+# =====================================================================
+
+version: 1
+
+user_type: minimal
+
+# =====================================================================
+# 研究分野
+# =====================================================================
+research_fields:
+  primary: []  # ai / bio / physics / math / social / engineering / business
+  keywords: []
+
+# =====================================================================
+# 調査深度
+# =====================================================================
+research_depth:
+  default: standard  # catchup / standard / survey
+
+# =====================================================================
+# 監視設定
+# =====================================================================
+monitoring:
+  enabled: false
+
+  authors: []
+  journals: []
+  arxiv_categories: []
+  keywords: []
+  conferences: []
+
+  frequency:
+    authors: daily
+    arxiv_categories: daily
+    journals: weekly
+    conferences: monthly
+
+# =====================================================================
+# 通知設定（research-assistant と同じ仕組み）
+# =====================================================================
+notifications:
+  enabled: false
+  send_mode: draft_approve  # draft_only / draft_approve / auto_self_only
+
+  channels:
+    email: { enabled: false }
+    slack: { enabled: false, webhook_env_var: "SLACK_WEBHOOK_URL" }
+    teams: { enabled: false }
+    discord: { enabled: false }
+    chatwork: { enabled: false }
+    line: { enabled: false }
+
+# =====================================================================
+# 論文の実在確認
+# =====================================================================
+validation:
+  # DOI / Google Scholar で実在確認
+  require_doi_verification: true
+  hallucination_prevention: true
+
+# =====================================================================
+# 言語
+# =====================================================================
+language:
+  input: en  # 英語論文が多い
+  summary: ja  # 日本語要約
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  research_assistant: { enabled: false }
+  report_writer: { enabled: false }
+  text_quality_checker: { enabled: false }
+  legal_advisor: { enabled: false }
+  secretary: { enabled: false }
+
+# =====================================================================
+# スケジュール
+# =====================================================================
+schedule:
+  mode: manual_only  # manual_only / daily / weekly / monthly
+  cron_expression: ""
+  timezone: "Asia/Tokyo"
+
+# =====================================================================
+# 保存先
+# =====================================================================
+workspace:
+  base_path: "./.academic-scout"
+  folders:
+    papers: "papers"
+    monitors: "monitors"
+    reports: "reports"
+    alerts: "alerts"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  never_store_credentials: true
+  require_notification_approval: true
+  never_auto_send_to_others: true
+  copyright_aware: true
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info

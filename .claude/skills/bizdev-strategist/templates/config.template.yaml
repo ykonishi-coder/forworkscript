@@ -1,0 +1,162 @@
+# =====================================================================
+# BizDev Strategist - 設定ファイル
+# =====================================================================
+# ⚠️ 新規事業アイデア・戦略は機密情報です。.gitignore 必須
+# =====================================================================
+
+version: 1
+
+user_type: minimal
+
+# =====================================================================
+# チーム構成
+# =====================================================================
+team:
+  name: "bizdev-strategist"
+  prefix: "bizdev-"
+
+  director: "bizdev-director"
+  specialists:
+    - "bizdev-researcher"
+    - "bizdev-analyst"
+    - "bizdev-strategist"
+  advocate: "bizdev-advocate"
+
+  active_phases:
+    researcher: true
+    analyst: true
+    strategist: true
+    advocate: true
+
+  approval_after:
+    - "researcher"
+    - "strategist"
+
+  advocate_strictness: strict  # 事業計画は厳しめ推奨
+
+# =====================================================================
+# 事業検討フェーズ
+# =====================================================================
+business_phase:
+  # ideation / validation / planning / pitch / investment_review
+  default: planning
+
+# =====================================================================
+# 業種・業界
+# =====================================================================
+industry:
+  primary: ""
+
+  # 業界別の参照情報源
+  custom_sources: []
+
+# =====================================================================
+# 対象読者
+# =====================================================================
+target_audience:
+  # internal_exec / investor / business_owner / partner
+  default: internal_exec
+
+# =====================================================================
+# 調査深度
+# =====================================================================
+research_depth:
+  # light (1 day) / standard (2-3 days) / deep (1 week+)
+  default: standard
+
+# =====================================================================
+# 使用フレームワーク
+# =====================================================================
+frameworks:
+  default:
+    - tam_sam_som
+    - swot
+    - three_c
+    - bmc
+
+  optional:
+    pestle: false
+    five_forces: false
+    stp: false
+    four_p: false
+    value_chain: false
+    ansoff: false
+    bcg: false
+    porter_strategies: false
+
+# =====================================================================
+# 自社プロファイル
+# =====================================================================
+company_profile:
+  # individual / small / medium / large
+  org_size: ""
+
+  existing_businesses: []
+  core_competencies: []
+  available_resources: ""
+
+# =====================================================================
+# 検討制約
+# =====================================================================
+constraints:
+  max_investment: 0  # 円
+  target_irr: 0      # %
+  payback_period: 0  # 月
+  risk_tolerance: medium  # low / medium / high
+
+# =====================================================================
+# プライバシー
+# =====================================================================
+privacy:
+  masking_level: strict
+
+  mask_fields:
+    - company_names
+    - competitor_names
+    - specific_amounts
+
+  cleanup:
+    enabled: true
+    delete_after_days: 180
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  slide_maker:
+    enabled: false
+  report_writer:
+    enabled: false
+  spreadsheet_operator:
+    enabled: false
+  text_quality_checker:
+    enabled: false
+  legal_advisor:
+    enabled: false
+
+# =====================================================================
+# 保存先
+# =====================================================================
+workspace:
+  base_path: "./.bizdev-strategist"
+
+  folders:
+    projects: "projects"
+    market_data: "market-data"
+    frameworks: "frameworks"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  never_external_send: true
+  require_peer_consent: true
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false

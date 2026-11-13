@@ -1,0 +1,133 @@
+# =====================================================================
+# Learning Advisor - 設定ファイル
+# =====================================================================
+
+version: 1
+
+user_type: minimal
+
+# =====================================================================
+# 対象
+# =====================================================================
+target:
+  # self / individual / team / organization / customers / children / other
+  type: self
+
+# =====================================================================
+# 目的
+# =====================================================================
+purpose:
+  # 個人向け
+  personal: []  # specific_skill / qualification / career / hobby / personal_growth
+
+  # 組織向け
+  organizational: []  # new_employee / management / specific_skill / culture / evaluation
+
+  # その他
+  custom: ""
+
+# =====================================================================
+# 期間
+# =====================================================================
+timeline:
+  # short (1-3 months) / mid (3-12 months) / long (1+ year) / continuous
+  duration: ""
+  start_date: ""
+  deadline: ""
+
+# =====================================================================
+# リソース
+# =====================================================================
+resources:
+  time_per_week_hours: 0
+  budget_monthly: 0
+  can_use_external: false
+
+# =====================================================================
+# 学習スタイル
+# =====================================================================
+learning_style:
+  visual: false
+  auditory: false
+  kinesthetic: false
+
+  format:
+    online: true
+    in_person: false
+    hybrid: false
+
+  pace:
+    intensive: false  # 集中
+    gradual: true     # 分散
+
+# =====================================================================
+# ツール
+# =====================================================================
+tools:
+  lms: ""  # moodle / canvas / google_classroom / udemy_business / teachable 等
+  platforms: []  # udemy / coursera / schoo / 等
+
+# =====================================================================
+# 評価
+# =====================================================================
+assessment:
+  methods: []  # test / practical / 360_feedback / self_assessment
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  lms:
+    date: ""
+    summary: ""
+  learning_platforms:
+    date: ""
+    summary: ""
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  goal_tracker: { enabled: false }
+  report_writer: { enabled: false }
+  slide_maker: { enabled: false }
+  hiring_assistant: { enabled: false }
+  text_quality_checker: { enabled: false }
+
+# =====================================================================
+# プライバシー
+# =====================================================================
+privacy:
+  # 人事情報の扱い
+  mask_personal_info: true
+  cleanup:
+    enabled: true
+    delete_after_days: 365
+
+# =====================================================================
+# 保存先
+# =====================================================================
+workspace:
+  base_path: "./.learning-advisor"
+  folders:
+    plans: "plans"
+    curricula: "curricula"
+    assessments: "assessments"
+    feedbacks: "feedbacks"
+    materials: "materials"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  never_external_send: true
+  require_peer_consent: true
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false

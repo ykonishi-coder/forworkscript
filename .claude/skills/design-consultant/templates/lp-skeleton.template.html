@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{ページタイトル} | {サービス名}</title>
+  <meta name="description" content="{120文字程度の説明。検索結果に出る}" />
+
+  <!-- OGP -->
+  <meta property="og:title" content="{ページタイトル}" />
+  <meta property="og:description" content="{OGP用の説明}" />
+  <meta property="og:image" content="https://{ドメイン}/ogp.png" />
+  <meta property="og:url" content="https://{ドメイン}/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{サービス名}" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- favicon -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- フォント（Google Fonts サンプル） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo">{サービス名}</a>
+      <nav>
+        <a href="#features">特徴</a>
+        <a href="#price">料金</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#cta" class="btn-primary">{主CTA}</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ヒーロー（ファーストビュー） -->
+    <section class="hero">
+      <div class="container">
+        <h1>{キャッチコピー}</h1>
+        <p class="sub">{サブコピー}</p>
+        <a href="#cta" class="btn-primary btn-lg">{主CTA}</a>
+        <p class="trust">{信頼の数値 例: 導入社数 1,000社 / 満足度 98%}</p>
+      </div>
+    </section>
+
+    <!-- 問題提起 -->
+    <section class="problems">
+      <div class="container">
+        <h2>こんなお困りありませんか？</h2>
+        <ul>
+          <li>{悩み1}</li>
+          <li>{悩み2}</li>
+          <li>{悩み3}</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 解決策 -->
+    <section class="solution">
+      <div class="container">
+        <h2>{サービス名} が解決します</h2>
+        <p>{一言で価値}</p>
+      </div>
+    </section>
+
+    <!-- 特徴 -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2>特徴</h2>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>{特徴1}</h3>
+            <p>{説明}</p>
+          </article>
+          <article class="feature-card">
+            <h3>{特徴2}</h3>
+            <p>{説明}</p>
+          </article>
+          <article class="feature-card">
+            <h3>{特徴3}</h3>
+            <p>{説明}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 実績・お客様の声 -->
+    <section class="testimonials">
+      <div class="container">
+        <h2>お客様の声</h2>
+        <blockquote>
+          <p>{声の引用}</p>
+          <cite>{氏名 or 匿名 / 会社・業種}</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 価格 -->
+    <section id="price" class="pricing">
+      <div class="container">
+        <h2>料金</h2>
+        <!-- プラン要素は必要に応じて -->
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2>よくあるご質問</h2>
+        <details>
+          <summary>{質問1}</summary>
+          <p>{回答}</p>
+        </details>
+        <details>
+          <summary>{質問2}</summary>
+          <p>{回答}</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 最終CTA -->
+    <section id="cta" class="final-cta">
+      <div class="container">
+        <h2>{最後の一押しコピー}</h2>
+        <a href="#" class="btn-primary btn-lg">{主CTA}</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© {YYYY} {会社名}</p>
+      <nav>
+        <a href="/privacy">プライバシーポリシー</a>
+        <a href="/terms">利用規約</a>
+        <a href="/commerce">特定商取引法に基づく表記</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

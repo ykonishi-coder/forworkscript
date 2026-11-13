@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>HTML Deck Template</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="slides.css">
+<script src="deck-stage.js" defer></script>
+<style>
+  /* === PDFダウンロードボタン（控えめ・グレースケール） === */
+  .pdf-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 2147483600;
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    color: rgba(51, 51, 51, 0.7);
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, color 0.2s ease, border-color 0.2s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  body:hover .pdf-btn { opacity: 0.5; }
+  .pdf-btn:hover {
+    opacity: 1;
+    color: var(--primary-0, #1F1F1F);
+    border-color: rgba(31, 31, 31, 0.3);
+  }
+  @media print {
+    .pdf-btn { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<button class="pdf-btn" type="button" aria-label="PDF出力"
+  onclick="window.print()"
+  title="印刷ダイアログから「PDFに保存」を選択">PDF</button>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 · 表紙 -->
+  <section class="slide cover" data-label="Title">
+    <div class="band">
+      <span class="logo-placeholder">ここにロゴがはいります</span>
+      <span class="band-meta">YYYY.MM</span>
+    </div>
+    <div class="cover-body">
+      <div class="eyebrow">サブタイトル</div>
+      <h1 class="cover-title">タイトルを<br><span class="gradient-text">ここに。</span></h1>
+      <p class="cover-sub">補足のコピーをここに書きます</p>
+      <div class="cover-meta">
+        <span>Prepared for 宛先</span>
+        <span class="sep">・</span>
+        <span>YYYY年MM月</span>
+      </div>
+    </div>
+    <div class="corner-blob"></div>
+  </section>
+
+  <!-- 02 · セクション扉 -->
+  <section class="slide section-divider" data-label="Section">
+    <div class="sd-number">01</div>
+    <div class="sd-title">
+      <div class="sd-en">CHAPTER</div>
+      <h2>セクション名</h2>
+    </div>
+    <div class="sd-rule"></div>
+  </section>
+
+  <!-- 03 · アジェンダ -->
+  <section class="slide std" data-label="Agenda">
+    <header class="header-band"><span>Agenda</span><span class="pageno">03 / 09</span></header>
+    <div class="body">
+      <h3 class="slide-title">本日の内容</h3>
+      <ol class="agenda">
+        <li><span class="num">01</span><span class="name">章タイトル</span><span class="time">10分</span></li>
+        <li><span class="num">02</span><span class="name">章タイトル</span><span class="time">15分</span></li>
+        <li><span class="num">03</span><span class="name">章タイトル</span><span class="time">15分</span></li>
+        <li><span class="num">04</span><span class="name">章タイトル</span><span class="time">10分</span></li>
+        <li><span class="num">05</span><span class="name">質疑応答</span><span class="time">10分</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 04 · 本文（標準） -->
+  <section class="slide std" data-label="Content">
+    <header class="header-band"><span>セクション名</span><span class="pageno">04 / 09</span></header>
+    <div class="body">
+      <div class="eyebrow-inline">EYEBROW LABEL</div>
+      <h3 class="slide-title">本文スライドのタイトル。</h3>
+      <p class="lead">リード文のサンプル。<br>本文の主旨をここに書きます。</p>
+      <ul class="bullets">
+        <li><span class="b-check">✓</span>箇条書きの本文サンプル</li>
+        <li><span class="b-check">✓</span>箇条書きの本文サンプル</li>
+        <li><span class="b-check">✓</span>箇条書きの本文サンプル</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 · 3カラム -->
+  <section class="slide std" data-label="Three columns">
+    <header class="header-band"><span>3つのポイント</span><span class="pageno">05 / 09</span></header>
+    <div class="body">
+      <h3 class="slide-title">3カラムのレイアウト</h3>
+      <div class="three-col">
+        <div class="col-card">
+          <div class="col-num">01</div>
+          <div class="col-head">見出し</div>
+          <p>カラムの本文サンプル。<br>2〜3行の説明を書きます。</p>
+        </div>
+        <div class="col-card">
+          <div class="col-num">02</div>
+          <div class="col-head">見出し</div>
+          <p>カラムの本文サンプル。<br>2〜3行の説明を書きます。</p>
+        </div>
+        <div class="col-card">
+          <div class="col-num">03</div>
+          <div class="col-head">見出し</div>
+          <p>カラムの本文サンプル。<br>2〜3行の説明を書きます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · VS比較 -->
+  <section class="slide std" data-label="Comparison">
+    <header class="header-band"><span>Before / After</span><span class="pageno">06 / 09</span></header>
+    <div class="body">
+      <h3 class="slide-title">比較レイアウト</h3>
+      <div class="compare">
+        <div class="c-side before">
+          <div class="c-tag">BEFORE</div>
+          <h4>左側の見出し</h4>
+          <ul>
+            <li>項目サンプル</li>
+            <li>項目サンプル</li>
+            <li>項目サンプル</li>
+          </ul>
+        </div>
+        <div class="c-vs">VS</div>
+        <div class="c-side after">
+          <div class="c-tag">AFTER</div>
+          <h4>右側の見出し</h4>
+          <ul>
+            <li>項目サンプル</li>
+            <li>項目サンプル</li>
+            <li>項目サンプル</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · 数値 -->
+  <section class="slide std stat-slide" data-label="Stat">
+    <header class="header-band"><span>主要指標</span><span class="pageno">07 / 09</span></header>
+    <div class="body stat-body">
+      <div class="stat-main">
+        <div class="stat-label">指標ラベル（補足説明）</div>
+        <div class="stat-number">00<span class="unit">%</span></div>
+        <div class="stat-caption">数値の出典・条件を小さく書きます</div>
+      </div>
+      <div class="stat-side">
+        <div class="mini-stat"><div class="mini-num">0<span class="u">単位</span></div><div class="mini-lbl">サブ指標</div></div>
+        <div class="mini-stat"><div class="mini-num">0<span class="u">単位</span></div><div class="mini-lbl">サブ指標</div></div>
+        <div class="mini-stat"><div class="mini-num">0<span class="u">単位</span></div><div class="mini-lbl">サブ指標</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · 引用 -->
+  <section class="slide quote-slide" data-label="Quote">
+    <div class="quote-wrap">
+      <div class="quote-mark">"</div>
+      <blockquote>
+        ここに引用文を入れます。<br>
+        <span class="gradient-text">強調したい部分</span>はグラデーションで。
+      </blockquote>
+      <div class="quote-attr">— 引用元・話者</div>
+    </div>
+  </section>
+
+  <!-- 09 · クロージング -->
+  <section class="slide closing" data-label="Closing">
+    <div class="closing-body">
+      <div class="closing-thanks gradient-text">Thank you.</div>
+      <div class="closing-jp">ご清聴ありがとうございました。</div>
+      <div class="closing-contact">
+        <div class="c-row"><span class="logo-placeholder-lg">ここにロゴがはいります</span></div>
+        <div class="c-row"><span class="c-lbl">Contact</span><span class="c-val">contact@example.com</span></div>
+        <div class="c-row"><span class="c-lbl">Web</span><span class="c-val">example.com</span></div>
+      </div>
+    </div>
+    <div class="closing-band"></div>
+  </section>
+
+</deck-stage>
+</body>
+</html>

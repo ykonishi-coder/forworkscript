@@ -1,0 +1,153 @@
+# =====================================================================
+# Content Creator - 設定ファイル
+# =====================================================================
+
+version: 1
+
+user_type: minimal
+
+# =====================================================================
+# 現在作成しているコンテンツ
+# =====================================================================
+current_content:
+  blog: false
+  note: false
+  wordpress: false
+  newsletter: false
+  homepage: false
+  lp: false
+  ad_copy: false
+  x_twitter: false
+  instagram: false
+  linkedin: false
+  tiktok: false
+  threads: false
+  facebook: false
+  youtube: false
+  youtube_shorts: false
+  instagram_reels: false
+  podcast: false
+  white_paper: false
+  case_study: false
+
+# =====================================================================
+# AI で自動化したいコンテンツ
+# =====================================================================
+ai_automate:
+  priorities: []  # 優先順に
+
+# =====================================================================
+# 状態
+# =====================================================================
+status:
+  # fresh_start / existing_continue / rebrand / mixed
+  type: fresh_start
+
+# =====================================================================
+# ターゲット
+# =====================================================================
+target:
+  personas: []
+  primary_platforms: []
+
+# =====================================================================
+# ブランド
+# =====================================================================
+brand:
+  name: ""
+  tone: ""
+  ng_words: []
+
+# =====================================================================
+# 目標・KPI
+# =====================================================================
+goals:
+  primary: []  # awareness / leads / engagement / cv
+  kpis: {}
+
+# =====================================================================
+# 発信頻度
+# =====================================================================
+frequency:
+  blog: ""     # weekly / biweekly / monthly
+  sns: ""      # daily / every_few_days
+  newsletter: ""  # weekly / monthly
+  video: ""    # monthly / quarterly / not_planned
+
+# =====================================================================
+# 動画制作
+# =====================================================================
+video:
+  attempting: false
+
+  # 動画を選んだ場合、以下を記録
+  level: ""  # beginner / intermediate / advanced
+  editor: ""  # capcut / davinci / premiere / outsource
+  understands_difficulty: false  # 難易度を理解したか
+
+# =====================================================================
+# ツール
+# =====================================================================
+tools:
+  cms: ""  # wordpress / note / shopify / ghost / hubspot / other
+  sns_management: ""
+  email: ""
+  video_editing: ""
+
+# =====================================================================
+# 連携情報の最新調査ログ
+# =====================================================================
+integration_research:
+  cms: { date: "", summary: "" }
+  email: { date: "", summary: "" }
+  sns: { date: "", summary: "" }
+
+# =====================================================================
+# 他エージェント連携
+# =====================================================================
+peer_agents:
+  marketing_strategist: { enabled: false }
+  design_consultant: { enabled: false }
+  image_prompt_generator: { enabled: false }
+  text_quality_checker: { enabled: false }
+  slide_maker: { enabled: false }
+  secretary: { enabled: false }
+
+# =====================================================================
+# プライバシー
+# =====================================================================
+privacy:
+  masking_level: strict
+  cleanup:
+    enabled: true
+    delete_after_days: 180
+
+# =====================================================================
+# 保存先
+# =====================================================================
+workspace:
+  base_path: "./.content-creator"
+  folders:
+    blog: "blog"
+    sns: "sns"
+    newsletter: "newsletter"
+    video: "video"
+    lp: "lp"
+    calendar: "content-calendar"
+
+# =====================================================================
+# セキュリティ
+# =====================================================================
+security:
+  never_external_send: true
+  check_copyright: true
+  check_law_compliance: true  # 景表法・ステマ・薬機法
+  auto_stop_after_errors: 3
+
+# =====================================================================
+# ログ
+# =====================================================================
+logging:
+  path: "./logs.txt"
+  level: info
+  include_sensitive_content: false
